@@ -1,0 +1,46 @@
+{
+  "title": "Türk Hava Yolları",
+  "flight": {
+    "query": {
+      "title": "Merhaba",
+      "content": "Nereyi keşfetmek istersiniz?",
+      "date": "Tarih",
+      "from": "Nereden",
+      "to": "Nereye",
+      "selectionTitle": "Kabin ve yolcu seçimi",
+      "passenger": "Yolcu",
+      "economyClass": "Economy Class",
+      "businessClass": "Business Class"
+    },
+    "list": {
+      "flight": "UÇUŞ",
+      "passenger": "Yolcu",
+      "promotionCode": "Promosyon Kodu",
+      "sortingCriteria": "Sıralama kriteri",
+      "economyFare": "Ekonomi Ücreti",
+      "departureTime": "Kalkış Saati",
+      "flightTime": "Uçuş Süresi",
+      "perPassenger": "Yolcu Başına",
+      "selectFlight": "Uçuşu seç",
+      "promotion": {
+        "firstContent": "Promosyon kodu seçeneği ile tüm Economy kabini Eco Fly paketlerini %50 indirimle satın alabilirsiniz!",
+        "secondContent": "Promosyon Kodu seçeneği aktifken Eco Fly paketi haricinde seçin yapılamamaktadır."
+      }
+    },
+    "result": {
+      "success": "Kabin seçiminiz tamamlandı.",
+      "totalAmount": "Toplam Tutar",
+      "error": "Kabin seçiminiz tamamlanamadı.",
+      "goBack": "Başa Dön"
+    }
+  },
+  "fareCategoriesEnum": {
+    "ECONOMY": "ECONOMY",
+    "BUSINESS": "BUSINESS"
+  },
+  "brandCodeEnum": {
+    "ecoFly": "Eco Fly",
+    "extraFly": "Extra Fly",
+    "primeFly": "Prime Fly"
+  }
+}

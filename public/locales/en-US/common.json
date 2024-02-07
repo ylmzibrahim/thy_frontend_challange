@@ -1,0 +1,50 @@
+{
+  "title": "Turkish Airlines",
+  "header": {
+    "search": "search",
+    "flightChallenge": "Flight Challenge"
+  },
+  "flight": {
+    "query": {
+      "title": "Hello",
+      "content": "Where would you like to explore?",
+      "date": "Dates",
+      "from": "From",
+      "to": "To",
+      "selectionTitle": "Cabin and passenger selection",
+      "passenger": "Passenger",
+      "economyClass": "Economy Class",
+      "businessClass": "Business Class"
+    },
+    "list": {
+      "flight": "FLIGHT",
+      "passenger": "Passenger",
+      "promotionCode": "Promotion Code",
+      "sortingCriteria": "Sorting criteria",
+      "economyFare": "Economy Fare",
+      "departureTime": "Departure Time",
+      "flightTime": "Flight Time",
+      "perPassenger": "Per Passenger",
+      "selectFlight": "Select flight",
+      "promotion": {
+        "firstContent": "With the promotional code option, you can purchase all Economy cabin Eco Fly packages with a 50% discount!",
+        "secondContent": "When the Promotion Code option is active, selection is not possible except for the Ecofly package."
+      }
+    },
+    "result": {
+      "success": "Your cabin selection is complete.",
+      "totalAmount": "Total Amount",
+      "error": "Your cabin selection could not be completed.",
+      "goBack": "Go Back"
+    }
+  },
+  "fareCategoriesEnum": {
+    "ECONOMY": "ECONOMY",
+    "BUSINESS": "BUSINESS"
+  },
+  "brandCodeEnum": {
+    "ecoFly": "Eco Fly",
+    "extraFly": "Extra Fly",
+    "primeFly": "Prime Fly"
+  }
+}
