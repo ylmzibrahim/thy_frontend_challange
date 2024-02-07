@@ -1,7 +1,8 @@
-import { FlightQuery, Subcategory } from "models/FlightType";
+import { Flight, FlightQuery, Subcategory } from "models/FlightType";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 interface FlightState {
+  flights: Flight[];
   promotionCodeActive: boolean;
   flight?: FlightQuery;
   activeFlightCard?: string;
@@ -9,6 +10,7 @@ interface FlightState {
 }
 
 const initialState: FlightState = {
+  flights: [],
   promotionCodeActive: false,
 };
 
@@ -18,6 +20,9 @@ export const FlightSlice = createSlice({
   reducers: {
     setFlight: (state, action: PayloadAction<FlightQuery>) => {
       state.flight = action.payload;
+    },
+    setFlights: (state, action: PayloadAction<Flight[]>) => {
+      state.flights = action.payload;
     },
     setActiveFlightCard: (state, action: PayloadAction<string>) => {
       state.activeFlightCard = action.payload;
@@ -33,6 +38,7 @@ export const FlightSlice = createSlice({
 
 export const {
   setFlight,
+  setFlights,
   setActiveFlightCard,
   setPromotionCodeActive,
   setChosenFlight,

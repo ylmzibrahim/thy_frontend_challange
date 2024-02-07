@@ -10,7 +10,8 @@
       "selectionTitle": "Kabin ve yolcu seçimi",
       "passenger": "Yolcu",
       "economyClass": "Economy Class",
-      "businessClass": "Business Class"
+      "businessClass": "Business Class",
+      "errorMessage": "Aradığınız kriterlere uygun uçuş bulunamadı. Lütfen bilgileri değiştirerek tekrar deneyiniz."
     },
     "list": {
       "flight": "UÇUŞ",

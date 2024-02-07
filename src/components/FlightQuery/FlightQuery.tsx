@@ -6,17 +6,19 @@ import {
   faPlaneDeparture,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Link from "next/link";
 import { Calendar } from "../Calendar/Calendar";
 import PassengerSelection from "components/PassengerSelection";
 import { ChangeEvent } from "react";
-import { useAppDispatch } from "store/store";
+import { useAppDispatch, useAppSelector } from "store/store";
 import { setFlight } from "store/features/flightSlice";
 import { FareCategories } from "models/FlightType";
+import { useRouter } from "next/router";
 
 export const FlightQuery = () => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
+  const router = useRouter();
+  const flights = useAppSelector((state) => state.flight.flights);
 
   const onLocationInputChange = (
     event: ChangeEvent<HTMLInputElement>,
@@ -26,14 +28,23 @@ export const FlightQuery = () => {
   };
 
   const onFlightQuerySubmit = () => {
-    dispatch(
-      setFlight({
-        departure: localStorage.getItem("departure") ?? "",
-        arrival: localStorage.getItem("arrival") ?? "",
-        fareCategory: localStorage.getItem("fare_category") as FareCategories,
-        passengerCount: Number(localStorage.getItem("passenger_count")),
-      })
+    const flightDetails = {
+      departure: localStorage.getItem("departure") ?? "",
+      arrival: localStorage.getItem("arrival") ?? "",
+      fareCategory: localStorage.getItem("fare_category") as FareCategories,
+      passengerCount: Number(localStorage.getItem("passenger_count")),
+    };
+    dispatch(setFlight(flightDetails));
+    const areThereAnyFlight = flights.filter(
+      (flight) =>
+        flight.originAirport.city.name === flightDetails.departure &&
+        flight.destinationAirport.city.name === flightDetails.arrival
     );
+    if (areThereAnyFlight.length) {
+      router.push("/flight/list");
+    } else {
+      window.alert(t("flight.query.errorMessage"));
+    }
   };
 
   return (
@@ -65,13 +76,12 @@ export const FlightQuery = () => {
           <div className="flex flex-row space-x-1 relative">
             <Calendar />
             <PassengerSelection />
-            <Link
-              href="/flight/list"
+            <button
               className="p-3 bg-redButton flex items-center"
               onClick={onFlightQuerySubmit}
             >
               <FontAwesomeIcon icon={faArrowRight} className="h-5" />
-            </Link>
+            </button>
           </div>
         </div>
       </div>

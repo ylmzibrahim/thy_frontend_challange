@@ -2,14 +2,17 @@ import { FlightCard } from "components/FlightCard/FlightCard";
 import ToggleSwitch from "components/ToggleSwitch";
 import { FareCategories, Flight, FlightQuery } from "models/FlightType";
 import { useTranslation } from "next-i18next";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { setPromotionCodeActive } from "store/features/flightSlice";
 import { useAppDispatch, useAppSelector } from "store/store";
 
 export const FlightList = () => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
-  const [flights, setFlights] = useState<Flight[]>([]);
+  const flights = useAppSelector((state) => state.flight.flights);
+  const [filteredAndSortedFlights, setFilteredAndSortedFlights] = useState<
+    Flight[]
+  >([]);
   const [flight, setFlight] = useState<FlightQuery>();
   const promotionCodeActive = useAppSelector(
     (state) => state.flight.promotionCodeActive
@@ -26,15 +29,53 @@ export const FlightList = () => {
     }
   }, []);
 
-  useEffect(() => {
-    import("assets/datas/flights.json")
-      .then((data) => setFlights(data.flights as Flight[]))
-      .catch((error) => console.error("Error loading flights.json:", error));
-  }, []);
-
   const onPromotionSwitchChange = (checked: boolean) => {
     dispatch(setPromotionCodeActive(checked));
   };
+
+  const getFilterFlights = useCallback(
+    (): Flight[] =>
+      flights.filter(
+        (_flight) =>
+          _flight.originAirport.city.name === flight?.departure &&
+          _flight.destinationAirport.city.name === flight?.arrival
+      ),
+    [flights, flight]
+  );
+
+  const sortByEconomyFare = useCallback(() => {
+    const filteredFlights = getFilterFlights();
+    filteredFlights.sort((firstFlight, secondFlight) => {
+      const ecoFlyPriceFirst =
+        firstFlight.fareCategories[FareCategories.ECONOMY].subcategories.find(
+          (subcategory) => subcategory.brandCode === "ecoFly"
+        )?.price.amount || 0;
+      const ecoFlyPriceSecond =
+        secondFlight.fareCategories[FareCategories.ECONOMY].subcategories.find(
+          (subcategory) => subcategory.brandCode === "ecoFly"
+        )?.price.amount || 0;
+      return ecoFlyPriceFirst - ecoFlyPriceSecond;
+    });
+    setFilteredAndSortedFlights(filteredFlights);
+  }, [flights, getFilterFlights]);
+
+  const sortByDepartureTime = useCallback(() => {
+    const filteredFlights = getFilterFlights();
+    filteredFlights.sort((firstFlight, secondFlight) => {
+      const departureTimeFirst = Number(
+        firstFlight.departureDateTimeDisplay.replace(":", "")
+      );
+      const departureTimeSecond = Number(
+        secondFlight.departureDateTimeDisplay.replace(":", "")
+      );
+      return departureTimeFirst - departureTimeSecond;
+    });
+    setFilteredAndSortedFlights(filteredFlights);
+  }, [flights, getFilterFlights]);
+
+  useEffect(() => {
+    sortByEconomyFare();
+  }, [sortByEconomyFare]);
 
   return (
     <div className="flex flex-col mx-auto w-fit pb-5">
@@ -58,15 +99,21 @@ export const FlightList = () => {
       <div className="flex flex-col border rounded-lg overflow-hidden">
         <div className="flex flex-row justify-end items-center bg-queryBg text-white text-xs space-x-2 py-2 px-4">
           <p>{t("flight.list.sortingCriteria")}</p>
-          <button className="border border-white py-1 px-3">
+          <button
+            className="border border-white py-1 px-3"
+            onClick={sortByEconomyFare}
+          >
             {t("flight.list.economyFare")}
           </button>
-          <button className="border border-white py-1 px-3">
+          <button
+            className="border border-white py-1 px-3"
+            onClick={sortByDepartureTime}
+          >
             {t("flight.list.departureTime")}
           </button>
         </div>
         <div className="bg-listHeader p-4 space-y-3">
-          {flights.map((listedFlight) => (
+          {filteredAndSortedFlights.map((listedFlight) => (
             <FlightCard
               key={`${listedFlight.arrivalDateTimeDisplay}-${listedFlight.arrivalDateTimeDisplay}`}
               flight={listedFlight}

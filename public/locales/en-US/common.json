@@ -14,7 +14,8 @@
       "selectionTitle": "Cabin and passenger selection",
       "passenger": "Passenger",
       "economyClass": "Economy Class",
-      "businessClass": "Business Class"
+      "businessClass": "Business Class",
+      "errorMessage": "No flights were found matching your search criteria. Please try again by changing the information."
     },
     "list": {
       "flight": "FLIGHT",

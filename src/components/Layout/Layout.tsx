@@ -2,10 +2,10 @@ import React from "react";
 import { LayoutProps } from "./Layout.types";
 import Header from "../Header";
 import styles from "./Layout.module.css";
-import { useRouter } from "next/router";
+import { useFetchFlightsJson2Slice } from "hooks/useFetchFlightsJson2Slice";
 
 export const Layout = ({ children }: LayoutProps) => {
-  const router = useRouter();
+  useFetchFlightsJson2Slice();
 
   return (
     <div className={styles.container}>
