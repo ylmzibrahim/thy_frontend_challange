@@ -20,11 +20,7 @@ export const Header = () => {
     <header className={clsx("py-2 px-5 ", headerClass)}>
       <div className="relative">
         <div className="flex justify-between">
-          <Link
-            href={`https://www.${WEBSITE_LINK}`}
-            target="_blank"
-            className="font-bold"
-          >
+          <Link href={"/flight/query"} className="font-bold">
             {WEBSITE_LINK}
           </Link>
           <p>

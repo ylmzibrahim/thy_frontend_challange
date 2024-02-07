@@ -5,8 +5,9 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Status } from "models/FlightType";
 import { useTranslation } from "next-i18next";
+import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useAppSelector } from "store/store";
 
 export const FlightResult = () => {
@@ -16,6 +17,13 @@ export const FlightResult = () => {
   const promotionCodeActive = useAppSelector(
     (state) => state.flight.promotionCodeActive
   );
+  const [passengerCount, setPassengerCount] = useState<number>(1);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setPassengerCount(Number(localStorage.getItem("passenger_count")));
+    }
+  }, []);
 
   useEffect(() => {
     if (!chosenFlight) router.push("/flight/query");
@@ -37,7 +45,7 @@ export const FlightResult = () => {
             <p className="text-xl font-thin">
               {t("flight.result.totalAmount")}
             </p>
-            <p className="text-lg text-blue-500">{`${t(chosenFlight.price.currency)} ${promotionCodeActive ? chosenFlight.price.amount / 2 : chosenFlight.price.amount}`}</p>
+            <p className="text-lg text-blue-500">{`${t(chosenFlight.price.currency)} ${promotionCodeActive ? (chosenFlight.price.amount / 2) * passengerCount : chosenFlight.price.amount * passengerCount}`}</p>
           </div>
         </>
       )}
@@ -52,9 +60,12 @@ export const FlightResult = () => {
           </div>
           <hr className="w-full" />
           <div className="flex w-full justify-end">
-            <button className="bg-red-500 px-5 py-2 w-fit">
+            <Link
+              href="/flight/query"
+              className="bg-red-500 px-5 py-2 w-fit text-white"
+            >
               {t("flight.result.goBack")}
-            </button>
+            </Link>
           </div>
         </>
       )}

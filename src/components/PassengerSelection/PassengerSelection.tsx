@@ -77,15 +77,19 @@ export const PassengerSelection = () => {
         <div className="flex flex-row text-slate-400 items-center">
           {[...Array(passengerCount)].map((_, index) => {
             if (index < 2 || passengerCount === 3)
-              return <FontAwesomeIcon icon={faPerson} className="h-5" />;
+              return (
+                <FontAwesomeIcon key={index} icon={faPerson} className="h-5" />
+              );
             else if (index === 2)
               return (
                 <>
                   <FontAwesomeIcon
+                    key={index}
                     icon={faPerson}
                     className="h-5 text-slate-600"
                   />
                   <FontAwesomeIcon
+                    key={index}
                     icon={faPlus}
                     className="h-2.5 text-slate-600"
                   />

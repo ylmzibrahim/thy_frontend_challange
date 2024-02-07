@@ -9,7 +9,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest"
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.5.1",
@@ -21,16 +22,19 @@
     "clsx": "^2.1.0",
     "fs": "^0.0.1-security",
     "git": "^0.1.5",
+    "i18next": "^23.8.2",
     "next": "14.1.0",
     "next-i18next": "^15.2.0",
     "next-themes": "^0.2.1",
     "react": "^18",
     "react-dom": "^18",
+    "react-i18next": "^14.0.5",
     "react-redux": "^9.1.0"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.4.2",
     "@testing-library/react": "^14.2.1",
+    "@testing-library/user-event": "^14.5.2",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
@@ -45,6 +49,8 @@
     "postcss": "^8.4.34",
     "prettier": "^3.2.5",
     "tailwindcss": "^3.4.1",
+    "ts-jest": "^29.1.2",
+    "ts-node": "^10.9.2",
     "typescript": "^5"
   }
 }

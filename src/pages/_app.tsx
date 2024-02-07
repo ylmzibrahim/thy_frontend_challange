@@ -1,7 +1,6 @@
 import React from "react";
 import "../assets/styles/globals.css";
 import { appWithTranslation } from "next-i18next";
-import { ThemeProvider } from "next-themes";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import { Layout } from "components/Layout/Layout";
@@ -20,13 +19,13 @@ function MyApp({ Component, pageProps }: Props) {
   }
 
   return (
-    <ThemeProvider attribute="class">
-      <Provider store={store}>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </Provider>
-    </ThemeProvider>
+    // <ThemeProvider attribute="class"> // Provider for darkmode
+    <Provider store={store}>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </Provider>
+    // </ThemeProvider>
   );
 }
 
