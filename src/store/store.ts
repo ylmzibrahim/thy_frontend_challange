@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { FlightSlice } from "./features/flightSlice";
+import { flightSlice } from "./features/flightSlice";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
+import { themeSlice } from "./features/languageSlice";
 
 export const store = configureStore({
   reducer: {
-    flight: FlightSlice.reducer,
+    flight: flightSlice.reducer,
+    theme: themeSlice.reducer,
   },
 });
 

@@ -8,6 +8,10 @@
     },
     "404": "404 - Sayfa Bulunamadı"
   },
+  "header": {
+    "search": "search",
+    "flightChallenge": "Flight Challenge"
+  },
   "flight": {
     "query": {
       "title": "Merhaba",

@@ -1,0 +1,11 @@
+.container {
+  @apply absolute right-0 top-12 w-16 h-10 rounded-l-2xl bg-white bg-gradient-to-r flex items-center pl-1 from-red-800 to-white shadow-xl drop-shadow-xl;
+}
+
+.backgroundUS {
+  @apply via-blue-800;
+}
+
+.button {
+  @apply w-8 h-8 rounded-full overflow-hidden relative;
+}

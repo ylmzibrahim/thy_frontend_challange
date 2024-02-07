@@ -14,7 +14,7 @@ const initialState: FlightState = {
   promotionCodeActive: false,
 };
 
-export const FlightSlice = createSlice({
+export const flightSlice = createSlice({
   name: "flight",
   initialState,
   reducers: {
@@ -42,5 +42,5 @@ export const {
   setActiveFlightCard,
   setPromotionCodeActive,
   setChosenFlight,
-} = FlightSlice.actions;
-export default FlightSlice.reducer;
+} = flightSlice.actions;
+export default flightSlice.reducer;
