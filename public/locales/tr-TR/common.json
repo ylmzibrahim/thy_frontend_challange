@@ -43,5 +43,10 @@
     "ecoFly": "Eco Fly",
     "extraFly": "Extra Fly",
     "primeFly": "Prime Fly"
+  },
+  "404": {
+    "title": "Kaybolmuş gibi görünüyorsun :(",
+    "text": "Aradığınız sayfa bulunamadı",
+    "link": "Ana sayfaya dön"
   }
 }

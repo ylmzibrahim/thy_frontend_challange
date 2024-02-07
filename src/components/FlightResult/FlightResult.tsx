@@ -5,14 +5,21 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Status } from "models/FlightType";
 import { useTranslation } from "next-i18next";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 import { useAppSelector } from "store/store";
 
 export const FlightResult = () => {
   const { t } = useTranslation();
+  const router = useRouter();
   const chosenFlight = useAppSelector((state) => state.flight.chosenFlight);
   const promotionCodeActive = useAppSelector(
     (state) => state.flight.promotionCodeActive
   );
+
+  useEffect(() => {
+    if (!chosenFlight) router.push("/flight/query");
+  }, []);
 
   return (
     <div className="flex flex-col items-center justify-center space-y-4 p-10 w-3/4 mx-auto">
