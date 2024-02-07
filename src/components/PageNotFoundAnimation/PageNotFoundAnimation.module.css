@@ -1,0 +1,31 @@
+.container {
+  @apply bg-center dark:bg-slate-700 grid col-span-full text-center;
+}
+
+.backgroundAnimation {
+  @apply bg-no-repeat h-96 bg-center bg-[url('https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif')];
+}
+
+.errorCode {
+  @apply font-sans text-center font-bold text-7xl text-slate-700;
+}
+
+.errorContainer {
+  @apply -mt-16 dark:bg-slate-700;
+}
+
+.errorMessageContainer {
+  @apply mt-5;
+}
+
+.errorMessageTitle {
+  @apply font-sans text-2xl font-semibold;
+}
+
+.errorMessageDescription {
+  @apply font-sans text-lg;
+}
+
+.errorMessageButton {
+  @apply text-white py-3 px-5 bg-emerald-500 my-5 mx-0 inline-block font-bold font-sans;
+}

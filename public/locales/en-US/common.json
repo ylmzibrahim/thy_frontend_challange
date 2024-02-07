@@ -1,5 +1,13 @@
 {
   "title": "Turkish Airlines",
+  "head": {
+    "flight": {
+      "query": "Select Flight",
+      "list": "Flight Lists",
+      "result": "Transaction Result"
+    },
+    "404": "404 - Page Not Found"
+  },
   "header": {
     "search": "search",
     "flightChallenge": "Flight Challenge"

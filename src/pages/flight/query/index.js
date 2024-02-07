@@ -10,8 +10,8 @@ const FlightQueryPage = () => {
   return (
     <>
       <Head>
-        <title>Select Flight Details</title>
-        <meta name="description" content="Select Flight Details" />
+        <title>{t("head.flight.query")}</title>
+        <meta name="description" content="Select Flight" />
         <link rel="icon" href="/images/favicon.ico" />
       </Head>
       <FlightQuery />

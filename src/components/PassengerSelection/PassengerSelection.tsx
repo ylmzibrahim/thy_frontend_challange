@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { FareCategories } from "models/FlightType";
 import { useTranslation } from "next-i18next";
+import styles from "./PassengerSelection.module.css";
 
 export const PassengerSelection = () => {
   const { t } = useTranslation();
@@ -69,12 +70,9 @@ export const PassengerSelection = () => {
 
   return (
     <>
-      <button
-        className="flex flex-col w-20 items-center justify-center bg-slate-800 p-1"
-        onClick={onPassengerButtonClick}
-      >
-        <p className="text-xs end-0 text-end w-full">{passengerCount}</p>
-        <div className="flex flex-row text-slate-400 items-center">
+      <button className={styles.container} onClick={onPassengerButtonClick}>
+        <p className={styles.passengerCount}>{passengerCount}</p>
+        <div className={styles.passengerIcons}>
           {[...Array(passengerCount)].map((_, index) => {
             if (index < 2 || passengerCount === 3)
               return (
@@ -86,12 +84,12 @@ export const PassengerSelection = () => {
                   <FontAwesomeIcon
                     key={index}
                     icon={faPerson}
-                    className="h-5 text-slate-600"
+                    className={styles.passengerIcon}
                   />
                   <FontAwesomeIcon
                     key={index}
                     icon={faPlus}
-                    className="h-2.5 text-slate-600"
+                    className={styles.plusIcon}
                   />
                 </>
               );
@@ -100,13 +98,10 @@ export const PassengerSelection = () => {
         </div>
       </button>
       {!isCollapsed && (
-        <div
-          ref={collapsibleRef}
-          className="flex flex-col space-y-5 absolute bg-white text-gray-500 top-full !ml-0 mt-2 w-full text-sm p-2 before:absolute before:-top-1 before:left-1/2 before:rotate-45 before:bg-white before:w-2 before:h-2"
-        >
+        <div ref={collapsibleRef} className={styles.collapsibleContainer}>
           <p>{t("flight.query.selectionTitle")}</p>
-          <div className="flex flex-row text-[0.6rem] justify-between">
-            <div className="flex items-center space-x-1">
+          <div className={styles.fareCategories}>
+            <div className={styles.fareCategory}>
               <input
                 type="radio"
                 name="fareCategory"
@@ -119,7 +114,7 @@ export const PassengerSelection = () => {
                 {t("flight.query.economyClass")}
               </label>
             </div>
-            <div className="flex items-center space-x-1">
+            <div className={styles.fareCategory}>
               <input
                 type="radio"
                 name="fareCategory"
@@ -133,19 +128,19 @@ export const PassengerSelection = () => {
               </label>
             </div>
           </div>
-          <div className="flex flex-row justify-between">
+          <div className={styles.passengerSelection}>
             <p>{t("flight.query.passenger")}</p>
-            <div className="flex flex-row space-x-3 items-center">
+            <div className={styles.buttonsContainer}>
               <button
-                className="bg-gray-300 w-6 aspect-square rounded-md"
+                className={styles.button}
                 disabled={passengerCount === 1}
                 onClick={decreasePassengerCount}
               >
                 -
               </button>
-              <p className="min-w-4 text-center">{passengerCount}</p>
+              <p className={styles.passengerCountLabel}>{passengerCount}</p>
               <button
-                className="bg-gray-300 w-6 aspect-square rounded-md"
+                className={styles.button}
                 onClick={increasePassengerCount}
               >
                 +

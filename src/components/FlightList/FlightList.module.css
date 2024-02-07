@@ -1,0 +1,39 @@
+.container {
+  @apply flex flex-col mx-auto w-fit pb-5;
+}
+
+.flightTitle {
+  @apply px-10 py-1 bg-redButton w-fit text-white;
+}
+
+.flightDetails {
+  @apply text-xl mt-2 mb-5;
+}
+
+.promoCodeSection {
+  @apply flex flex-row space-x-5 mb-4;
+}
+
+.promoCodeLabel {
+  @apply font-semibold;
+}
+
+.promoCodeContent {
+  @apply text-xs mb-8 space-y-4;
+}
+
+.flightsListContainer {
+  @apply flex flex-col border rounded-lg overflow-hidden;
+}
+
+.flightsListHeader {
+  @apply flex flex-row justify-end items-center bg-queryBg text-white text-xs space-x-2 py-2 px-4;
+}
+
+.sortingButton {
+  @apply border border-white py-1 px-3;
+}
+
+.flightsList {
+  @apply bg-listHeader p-4 space-y-3;
+}

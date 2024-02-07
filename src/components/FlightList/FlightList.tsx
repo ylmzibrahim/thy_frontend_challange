@@ -5,6 +5,7 @@ import { useTranslation } from "next-i18next";
 import { useCallback, useEffect, useState } from "react";
 import { setPromotionCodeActive } from "store/features/flightSlice";
 import { useAppDispatch, useAppSelector } from "store/store";
+import styles from "./FlightList.module.css";
 
 export const FlightList = () => {
   const { t } = useTranslation();
@@ -78,41 +79,38 @@ export const FlightList = () => {
   }, [sortByEconomyFare]);
 
   return (
-    <div className="flex flex-col mx-auto w-fit pb-5">
-      <div className="px-10 py-1 bg-redButton w-fit text-white">
-        {t("flight.list.flight")}
-      </div>
-      <div className="text-xl mt-2 mb-5">
+    <div className={styles.container}>
+      <div className={styles.flightTitle}>{t("flight.list.flight")}</div>
+      <div className={styles.flightDetails}>
         {flight &&
           `${flight.departure} - ${flight.arrival}, ${flight.passengerCount} ${t("flight.list.passenger")}`}
       </div>
-      <div className="flex flex-row space-x-5 mb-4">
-        <p className="font-semibold">{t("flight.list.promotionCode")}</p>
+      <div className={styles.promoCodeSection}>
+        <p className={styles.promoCodeLabel}>
+          {t("flight.list.promotionCode")}
+        </p>
         <ToggleSwitch handleChange={onPromotionSwitchChange} />
       </div>
       {promotionCodeActive && (
-        <div className="text-xs mb-8 space-y-4">
+        <div className={styles.promoCodeContent}>
           <p>{t("flight.list.promotion.firstContent")}</p>
           <p>{t("flight.list.promotion.secondContent")}</p>
         </div>
       )}
-      <div className="flex flex-col border rounded-lg overflow-hidden">
-        <div className="flex flex-row justify-end items-center bg-queryBg text-white text-xs space-x-2 py-2 px-4">
+      <div className={styles.flightsListContainer}>
+        <div className={styles.flightsListHeader}>
           <p>{t("flight.list.sortingCriteria")}</p>
-          <button
-            className="border border-white py-1 px-3"
-            onClick={sortByEconomyFare}
-          >
+          <button className={styles.sortingButton} onClick={sortByEconomyFare}>
             {t("flight.list.economyFare")}
           </button>
           <button
-            className="border border-white py-1 px-3"
+            className={styles.sortingButton}
             onClick={sortByDepartureTime}
           >
             {t("flight.list.departureTime")}
           </button>
         </div>
-        <div className="bg-listHeader p-4 space-y-3">
+        <div className={styles.flightsList}>
           {filteredAndSortedFlights.map((listedFlight) => (
             <FlightCard
               key={`${listedFlight.arrivalDateTimeDisplay}-${listedFlight.arrivalDateTimeDisplay}`}

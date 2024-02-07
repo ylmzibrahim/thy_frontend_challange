@@ -1,0 +1,19 @@
+.container {
+  @apply flex flex-col w-full h-full items-center bg-queryBg text-white pt-10;
+}
+
+.titleContent {
+  @apply text-xl;
+}
+
+.descriptionContent {
+  @apply text-lg;
+}
+
+.queryContainer {
+  @apply flex flex-row p-5 bg-querySelectionBg space-x-1 mt-5;
+}
+
+.submitButton {
+  @apply p-3 bg-redButton flex items-center;
+}

@@ -1,0 +1,39 @@
+.container {
+  @apply flex flex-col items-center justify-center space-y-4 p-10 w-3/4 mx-auto;
+}
+
+.resultMessage {
+  @apply flex flex-row items-start space-x-3 w-full;
+}
+
+.successIcon {
+  @apply text-green-600 h-6;
+}
+
+.errorIcon {
+  @apply text-red-600 h-6;
+}
+
+.horizontalLine {
+  @apply w-full;
+}
+
+.successDescriptionContainer {
+  @apply flex flex-row justify-between w-full;
+}
+
+.successDescriptionMessage {
+  @apply text-xl font-thin;
+}
+
+.successDescriptionAmount {
+  @apply text-lg text-blue-500;
+}
+
+.errorDescriptionContainer {
+  @apply flex w-full justify-end;
+}
+
+.errorDescritionButton {
+  @apply bg-red-500 px-5 py-2 w-fit text-white;
+}

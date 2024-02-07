@@ -10,7 +10,7 @@ const FlightListPage = () => {
   return (
     <>
       <Head>
-        <title>Flight Lists</title>
+        <title>{t("head.flight.list")}</title>
         <meta name="description" content="Flight Lists" />
         <link rel="icon" href="/images/favicon.ico" />
       </Head>

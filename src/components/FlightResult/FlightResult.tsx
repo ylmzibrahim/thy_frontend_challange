@@ -9,6 +9,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useAppSelector } from "store/store";
+import styles from "./FlightResult.module.css";
 
 export const FlightResult = () => {
   const { t } = useTranslation();
@@ -21,7 +22,7 @@ export const FlightResult = () => {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      setPassengerCount(Number(localStorage.getItem("passenger_count")));
+      setPassengerCount(Number(localStorage.getItem("passenger_count") ?? 1));
     }
   }, []);
 
@@ -30,40 +31,39 @@ export const FlightResult = () => {
   }, []);
 
   return (
-    <div className="flex flex-col items-center justify-center space-y-4 p-10 w-3/4 mx-auto">
+    <div className={styles.container}>
       {chosenFlight?.status === Status.AVAILABLE && (
         <>
-          <div className="flex flex-row items-start space-x-3 w-full">
+          <div className={styles.resultMessage}>
             <FontAwesomeIcon
               icon={faCircleCheck}
-              className="text-green-600 h-6"
+              className={styles.successIcon}
             />
             <p>{t("flight.result.success")}</p>
           </div>
-          <hr className="w-full" />
-          <div className="flex flex-row justify-between w-full">
-            <p className="text-xl font-thin">
+          <hr className={styles.horizontalLine} />
+          <div className={styles.successDescriptionContainer}>
+            <p className={styles.successDescriptionMessage}>
               {t("flight.result.totalAmount")}
             </p>
-            <p className="text-lg text-blue-500">{`${t(chosenFlight.price.currency)} ${promotionCodeActive ? (chosenFlight.price.amount / 2) * passengerCount : chosenFlight.price.amount * passengerCount}`}</p>
+            <p
+              className={styles.successDescriptionAmount}
+            >{`${t(chosenFlight.price.currency)} ${promotionCodeActive ? (chosenFlight.price.amount / 2) * passengerCount : chosenFlight.price.amount * passengerCount}`}</p>
           </div>
         </>
       )}
       {chosenFlight?.status === Status.ERROR && (
         <>
-          <div className="flex flex-row items-start space-x-3 w-full">
+          <div className={styles.resultMessage}>
             <FontAwesomeIcon
               icon={faCircleXmark}
-              className="text-red-600 h-6"
+              className={styles.errorIcon}
             />
             <p>{t("flight.result.error")}</p>
           </div>
-          <hr className="w-full" />
-          <div className="flex w-full justify-end">
-            <Link
-              href="/flight/query"
-              className="bg-red-500 px-5 py-2 w-fit text-white"
-            >
+          <hr className={styles.horizontalLine} />
+          <div className={styles.errorDescriptionContainer}>
+            <Link href="/flight/query" className={styles.errorDescritionButton}>
               {t("flight.result.goBack")}
             </Link>
           </div>

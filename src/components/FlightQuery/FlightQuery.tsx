@@ -13,6 +13,7 @@ import { useAppDispatch, useAppSelector } from "store/store";
 import { setFlight } from "store/features/flightSlice";
 import { FareCategories } from "models/FlightType";
 import { useRouter } from "next/router";
+import styles from "./FlightQuery.module.css";
 
 export const FlightQuery = () => {
   const { t } = useTranslation();
@@ -48,41 +49,34 @@ export const FlightQuery = () => {
   };
 
   return (
-    <div className="flex flex-col w-full h-full items-center bg-queryBg text-white pt-10">
-      <h3 className="text-xl">{t("flight.query.title")}</h3>
-      <h4 className="text-lg">{t("flight.query.content")}</h4>
-      <div className="mt-5">
-        <div className="flex flex-row p-5 bg-querySelectionBg space-x-1">
-          <IconInput
-            icon={faPlaneDeparture}
-            text="flight.query.from"
-            value={
-              typeof window !== "undefined"
-                ? localStorage.getItem("departure")
-                : ""
-            }
-            handleChange={(event) => onLocationInputChange(event, "departure")}
-          />
-          <IconInput
-            icon={faPlaneArrival}
-            text="flight.query.to"
-            value={
-              typeof window !== "undefined"
-                ? localStorage.getItem("arrival")
-                : ""
-            }
-            handleChange={(event) => onLocationInputChange(event, "arrival")}
-          />
-          <div className="flex flex-row space-x-1 relative">
-            <Calendar />
-            <PassengerSelection />
-            <button
-              className="p-3 bg-redButton flex items-center"
-              onClick={onFlightQuerySubmit}
-            >
-              <FontAwesomeIcon icon={faArrowRight} className="h-5" />
-            </button>
-          </div>
+    <div className={styles.container}>
+      <h3 className={styles.titleContent}>{t("flight.query.title")}</h3>
+      <h4 className={styles.descriptionContent}>{t("flight.query.content")}</h4>
+      <div className={styles.queryContainer}>
+        <IconInput
+          icon={faPlaneDeparture}
+          text="flight.query.from"
+          value={
+            typeof window !== "undefined"
+              ? localStorage.getItem("departure")
+              : ""
+          }
+          handleChange={(event) => onLocationInputChange(event, "departure")}
+        />
+        <IconInput
+          icon={faPlaneArrival}
+          text="flight.query.to"
+          value={
+            typeof window !== "undefined" ? localStorage.getItem("arrival") : ""
+          }
+          handleChange={(event) => onLocationInputChange(event, "arrival")}
+        />
+        <div className="flex flex-row space-x-1 relative">
+          <Calendar />
+          <PassengerSelection />
+          <button className={styles.submitButton} onClick={onFlightQuerySubmit}>
+            <FontAwesomeIcon icon={faArrowRight} className="h-5" />
+          </button>
         </div>
       </div>
     </div>

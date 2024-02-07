@@ -1,0 +1,7 @@
+.container {
+  @apply flex flex-row space-x-2 p-3 items-center bg-slate-800;
+}
+
+.calendarIcon {
+  @apply w-5 aspect-square;
+}

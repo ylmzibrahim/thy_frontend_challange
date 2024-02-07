@@ -1,0 +1,47 @@
+.container {
+  @apply flex flex-col w-20 items-center justify-center bg-slate-800 p-1;
+}
+
+.passengerCount {
+  @apply text-xs end-0 text-end w-full;
+}
+
+.passengerIcons {
+  @apply flex flex-row text-slate-400 items-center;
+}
+
+.passengerIcon {
+  @apply h-5 text-slate-600;
+}
+
+.plusIcon {
+  @apply h-2.5 text-slate-600;
+}
+
+.collapsibleContainer {
+  @apply flex flex-col space-y-5 absolute bg-white text-gray-500 top-full !ml-0 mt-2 w-full text-sm p-2 before:absolute before:-top-1 before:left-1/2 before:rotate-45 before:bg-white before:w-2 before:h-2;
+}
+
+.fareCategories {
+  @apply flex flex-row text-[0.6rem] justify-between;
+}
+
+.fareCategory {
+  @apply flex items-center space-x-1;
+}
+
+.passengerSelection {
+  @apply flex flex-row justify-between;
+}
+
+.buttonsContainer {
+  @apply flex flex-row space-x-3 items-center;
+}
+
+.button {
+  @apply bg-gray-300 w-6 aspect-square rounded-md;
+}
+
+.passengerCountLabel {
+  @apply min-w-4 text-center;
+}

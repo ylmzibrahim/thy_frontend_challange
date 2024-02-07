@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useTranslation } from "next-i18next";
 import { IconInputProps } from "./IconInput.types";
+import styles from "./IconInput.module.css";
 
 export const IconInput = ({
   icon,
@@ -11,13 +12,13 @@ export const IconInput = ({
   const { t } = useTranslation();
 
   return (
-    <div className="flex flex-row bg-white text-slate-800 p-2 space-x-2">
-      <FontAwesomeIcon icon={icon} className="w-4 aspect-square" />
+    <div className={styles.container}>
+      <FontAwesomeIcon icon={icon} className={styles.icon} />
       <input
         type="text"
         placeholder={t(text)}
         defaultValue={value ?? ""}
-        className="outline-none"
+        className={styles.input}
         onChange={handleChange}
       />
     </div>

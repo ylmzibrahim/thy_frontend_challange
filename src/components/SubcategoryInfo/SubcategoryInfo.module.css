@@ -1,0 +1,31 @@
+.container {
+  @apply flex flex-col w-full border;
+}
+
+.header {
+  @apply flex flex-row justify-between bg-gray-300 p-2;
+}
+
+.headerTitle {
+  @apply font-semibold;
+}
+
+.headerPriceContainer {
+  @apply flex flex-row space-x-1;
+}
+
+.headerPriceCurrency {
+  @apply text-[0.6rem];
+}
+
+.rights {
+  @apply flex flex-col min-h-52 text-sm;
+}
+
+.right {
+  @apply p-2 border;
+}
+
+.selectFlightButton {
+  @apply bg-redButton text-center py-5 text-white disabled:bg-gray-400 disabled:text-gray-600;
+}

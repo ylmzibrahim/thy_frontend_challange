@@ -4,6 +4,7 @@ import { FareCategories, Subcategory } from "models/FlightType";
 import { FlightCardProps } from "./FlightCard.types";
 import { useEffect, useState } from "react";
 import { FlightSubcategories } from "components/FlightSubcategories/FlightSubcategories";
+import styles from "./FlightCard.module.css";
 
 export const FlightCard = ({ flight }: FlightCardProps) => {
   const [subcategories, setSubcategories] = useState<Subcategory[]>([]);
@@ -28,8 +29,8 @@ export const FlightCard = ({ flight }: FlightCardProps) => {
   }, [isEconomyFlightOpen, isBusinessFlightOpen]);
 
   return (
-    <div className="flex flex-col">
-      <div className="flex flex-row space-x-3">
+    <div className={styles.container}>
+      <div className={styles.flightCardsSection}>
         <FlightInfo flight={flight} />
         <FlightSelection
           flight={flight}

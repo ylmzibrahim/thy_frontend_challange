@@ -5,6 +5,7 @@ import { useMemo } from "react";
 import { BrandCode, FareCategories } from "models/FlightType";
 import { setChosenFlight } from "store/features/flightSlice";
 import { useRouter } from "next/router";
+import styles from "./SubcategoryInfo.module.css";
 
 export const SubcategoryInfo = ({
   subcategory,
@@ -31,27 +32,29 @@ export const SubcategoryInfo = ({
   };
 
   return (
-    <div className="flex flex-col w-full border">
-      <div className="flex flex-row justify-between bg-gray-300 p-2">
-        <p className="font-semibold">
+    <div className={styles.container}>
+      <div className={styles.header}>
+        <p className={styles.headerTitle}>
           {t(`brandCodeEnum.${subcategory.brandCode}`)}
         </p>
-        <div className="flex flex-row space-x-1">
-          <p className="text-[0.6rem]">{subcategory.price.currency}</p>
-          <p className="font-semibold">
+        <div className={styles.headerPriceContainer}>
+          <p className={styles.headerPriceCurrency}>
+            {subcategory.price.currency}
+          </p>
+          <p className={styles.headerTitle}>
             {promotionCodeActive && !buttonDisabled
               ? subcategory.price.amount / 2
               : subcategory.price.amount}
           </p>
         </div>
       </div>
-      <div className="flex flex-col min-h-52 text-sm">
+      <div className={styles.rights}>
         {subcategory.rights.map((right) => (
-          <div className="p-2 border">{right}</div>
+          <div className={styles.right}>{right}</div>
         ))}
       </div>
       <button
-        className="bg-redButton text-center py-5 text-white disabled:bg-gray-400 disabled:text-gray-600"
+        className={styles.selectFlightButton}
         disabled={buttonDisabled}
         onClick={onSelectFlightClick}
       >

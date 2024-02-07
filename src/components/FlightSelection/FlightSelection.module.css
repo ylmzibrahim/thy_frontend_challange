@@ -1,0 +1,39 @@
+.container {
+  @apply flex flex-row bg-white space-x-4 px-3 py-5 rounded-sm items-center cursor-pointer relative;
+}
+
+.containerNotChecked {
+  @apply shadow-xl drop-shadow-2xl;
+}
+
+.containerChecked {
+  @apply after:w-full after:h-5 after:bg-white after:top-full after:absolute after:left-0;
+}
+
+.radioButtonContainer {
+  @apply flex items-center space-x-1;
+}
+
+.radioButton {
+  @apply cursor-pointer;
+}
+
+.radioButtonLabel {
+  @apply underline text-gray-600 font-semibold text-xs;
+}
+
+.priceInfoContainer {
+  @apply flex flex-col items-start justify-center;
+}
+
+.priceInfoDescription {
+  @apply text-gray-600 font-semibold text-[0.6rem];
+}
+
+.priceInfoAmount {
+  @apply font-bold text-base;
+}
+
+.upDownIcon {
+  @apply w-3 !ml-10;
+}

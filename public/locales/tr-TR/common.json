@@ -1,5 +1,13 @@
 {
   "title": "Türk Hava Yolları",
+  "head": {
+    "flight": {
+      "query": "Uçuş Seç",
+      "list": "Uçuş Listesi",
+      "result": "İşlem Sonucu"
+    },
+    "404": "404 - Sayfa Bulunamadı"
+  },
   "flight": {
     "query": {
       "title": "Merhaba",

@@ -6,6 +6,7 @@ import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { useAppDispatch, useAppSelector } from "store/store";
 import { setActiveFlightCard } from "store/features/flightSlice";
 import { BrandCode, FareCategories, Price } from "models/FlightType";
+import styles from "./FlightSelection.module.css";
 
 export const FlightSelection = ({
   flight,
@@ -56,35 +57,36 @@ export const FlightSelection = ({
   return (
     <div
       className={
-        "flex flex-row bg-white space-x-4 px-3 py-5 rounded-sm items-center cursor-pointer relative" +
-        (!isChecked
-          ? " shadow-xl drop-shadow-2xl"
-          : " after:w-full after:h-5 after:bg-white after:top-full after:absolute after:left-0")
+        styles.container +
+        " " +
+        (!isChecked ? styles.containerNotChecked : styles.containerChecked)
       }
       onClick={onSelectionCardClick}
     >
-      <div className="flex items-center space-x-1">
+      <div className={styles.radioButtonContainer}>
         <input
           ref={radioButtonRef}
-          className="cursor-pointer"
+          className={styles.radioButton}
           type="radio"
           name={"fareCategoryList"}
           id={key}
         />
-        <p className="underline text-gray-600 font-semibold text-xs">
+        <p className={styles.radioButtonLabel}>
           {t(`fareCategoriesEnum.${fareCategory}`)}
         </p>
       </div>
-      <div className="flex flex-col items-start justify-center">
-        <p className="text-gray-600 font-semibold text-[0.6rem]">
+      <div className={styles.priceInfoContainer}>
+        <p className={styles.priceInfoDescription}>
           {t("flight.list.perPassenger")}
         </p>
-        <p className="font-bold text-md">{`${ecoFlyPrice?.currency} ${promotionCodeActive && fareCategory === FareCategories.ECONOMY ? (ecoFlyPrice?.amount ?? 0) / 2 : ecoFlyPrice?.amount}`}</p>
+        <p
+          className={styles.priceInfoAmount}
+        >{`${ecoFlyPrice?.currency} ${promotionCodeActive && fareCategory === FareCategories.ECONOMY ? (ecoFlyPrice?.amount ?? 0) / 2 : ecoFlyPrice?.amount}`}</p>
       </div>
       {isChecked ? (
-        <FontAwesomeIcon icon={faChevronDown} className="w-3 !ml-10" />
+        <FontAwesomeIcon icon={faChevronDown} className={styles.upDownIcon} />
       ) : (
-        <FontAwesomeIcon icon={faChevronUp} className="w-3 !ml-10" />
+        <FontAwesomeIcon icon={faChevronUp} className={styles.upDownIcon} />
       )}
     </div>
   );
